@@ -1,6 +1,6 @@
 # Marketing Funnel Diagnostics: Campaign Performance & A/B Testing Analysis
 
-An end-to-end analysis of a multi-channel marketing dataset — evaluating campaign performance, diagnosing a real conversion-rate drop, quantifying its business impact, and using A/B testing to guide optimization decisions.
+An end-to-end analysis of a multi-channel marketing dataset, evaluating campaign performance, diagnosing a real conversion-rate drop, quantifying its business impact, and using A/B testing to guide optimization decisions.
 
 ---
 
@@ -10,7 +10,7 @@ This project analyzes marketing campaign data to help a business understand:
 
 - Which marketing channels perform best
 - How different customer segments (age, language, subscribing channel) behave
-- Why a sudden drop in conversion rate occurred — and what it cost the business
+- Why a sudden drop in conversion rate occurred and what it cost the business
 - Whether a personalization test on email campaigns actually improved conversions
 
 The analysis moves from exploratory data analysis → automated reporting functions → root-cause investigation → A/B test evaluation, mirroring how a marketing analytics workflow would run in practice.
@@ -47,9 +47,9 @@ The marketing team needed to:
 - Converted `converted` and `is_retained` columns to boolean types
 - Parsed `date_served`, `date_subscribed`, and `date_canceled` into datetime objects
 - Engineered new features:
-  - `is_house_ads` — flags whether the channel was House Ads
-  - `is_correct_lang` — flags whether an ad was shown in the user's preferred language
-  - `channel_code` — numeric encoding of marketing channel
+  - `is_house_ads` - flags whether the channel was House Ads
+  - `is_correct_lang` - flags whether an ad was shown in the user's preferred language
+  - `channel_code` - numeric encoding of marketing channel
   - `DoW` — day of week the user subscribed
 
 ---
@@ -76,7 +76,7 @@ A custom `conversion_rate()` + `plotting_conv()` pipeline was built to automate 
 ### Quantifying the Business Impact
 Using pre-bug conversion rates as a baseline, an **index model** was built to estimate what conversion rates *should* have been for Spanish, Arabic, and German users (relative to English performance), and compared against what actually happened during the bug window.
 
-**Estimated impact: ~32 lost subscribers** during the affected period — a meaningful loss for a growing company, especially one expanding into new-language markets.
+**Estimated impact: 24 lost subscribers** during the affected period - a meaningful loss for a growing company, especially one expanding into new-language markets.
 
 ---
 
@@ -91,24 +91,24 @@ Evaluated whether personalizing email content improved conversion versus a contr
 4. Ran an independent samples **t-test** (`scipy.stats.ttest_ind`) to test statistical significance
 5. Built an `ab_segmentation()` function to re-run the lift/t-test analysis **within** subgroups (by language and by age group), to check whether the effect held consistently across segments — or was being driven by one group
 
-**Why this matters:** a positive average lift can mask the fact that the effect is concentrated in (or absent from) specific segments — segment-level testing avoids rolling out a change that helps some users and hurts others.
+**Why this matters:** a positive average lift can mask the fact that the effect is concentrated in (or absent from) specific segments, segment-level testing avoids rolling out a change that helps some users and hurts others.
 
 ---
 
 ## Tech Stack
 
-- **Python** — `pandas`, `numpy`
-- **Visualization** — `matplotlib`
-- **Statistics** — `scipy.stats` (independent t-test)
+- **Python** - `pandas`, `numpy`
+- **Visualization** - `matplotlib`
+- **Statistics** - `scipy.stats` (independent t-test)
 
 
 ---
 
 ## Key Takeaways
 
-- **Data quality issues can silently erode revenue** — a language-targeting bug went undetected until a structured, channel-by-channel investigation surfaced it.
+- **Data quality issues can silently erode revenue** - a language-targeting bug went undetected until a structured, channel-by-channel investigation surfaced it.
 - **Reusable functions** (`conversion_rate`, `plotting_conv`, `lift`, `ab_segmentation`) turned a one-off analysis into a repeatable diagnostic toolkit.
-- **Segment-level A/B testing** is essential — an overall "winning" variant can still underperform for specific audiences.
+- **Segment-level A/B testing** is essential - an overall "winning" variant can still underperform for specific audiences.
 
 ---
 

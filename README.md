@@ -21,7 +21,7 @@ Python · pandas · numpy · matplotlib · scipy.stats
 
 This README covers the highlights. For the detailed walkthrough - the investigation step-by-step, the reasoning behind each decision, and the full segment results - read the write-up on Medium:
 
-**[Medium Page](https://happinesskanife.medium.com/)(#)**
+**[Medium Page](https://happinesskanife.medium.com/)**
 
 ## Files
 
